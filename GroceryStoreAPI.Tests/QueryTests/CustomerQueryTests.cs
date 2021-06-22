@@ -18,14 +18,11 @@ namespace GroceryStoreAPI.Tests.QueryTests
         [Fact]
         public async Task CustomerQuery_InvalidObject_ReturnsBadRequest()
         {
-            var fakeDbSet = A.Fake<DbSet<Customer>>();
             var context = A.Fake<CustomerContext>();
             var validator = A.Fake<IValidator<CustomerQueryRequest>>();
             var customerRequest = A.Fake<CustomerQueryRequest>();
             var validationResult = A.Fake<ValidationResult>();
-
-            A.CallTo(() => context.Customers).Returns(fakeDbSet);
-
+            
             A.CallTo(() => validationResult.IsValid)
                 .Returns(false);
             A.CallTo(() => validator.ValidateAsync(customerRequest, default))
@@ -92,8 +89,7 @@ namespace GroceryStoreAPI.Tests.QueryTests
             var validator = A.Fake<IValidator<CustomerQueryRequest>>();
             var customerRequest = A.Fake<CustomerQueryRequest>();
             var validationResult = A.Fake<ValidationResult>();
-            var fakeCustomer = A.Fake<Customer>();
-            
+
             A.CallTo(() => context.Customers).Returns(fakeDbSet);
             A.CallTo(() => fakeDbSet.FindAsync()).Throws<Exception>();
 

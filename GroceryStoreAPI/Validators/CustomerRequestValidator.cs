@@ -7,10 +7,6 @@ namespace GroceryStoreAPI.Validators
     {
         public CustomerRequestValidator()
         {
-            RuleFor(x => x)
-                .NotNull()
-                .WithMessage(ErrorMessages.ObjectRequired);
-            
             RuleFor(x => x.Id)
                 .SetValidator(new IdValidator<CustomerQueryRequest>());
         }

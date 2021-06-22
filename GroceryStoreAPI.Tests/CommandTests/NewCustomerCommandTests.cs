@@ -9,8 +9,6 @@ using GroceryStoreAPI.Commands;
 using GroceryStoreAPI.Dal;
 using GroceryStoreAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Xunit;
 
 namespace GroceryStoreAPI.Tests.CommandTests
