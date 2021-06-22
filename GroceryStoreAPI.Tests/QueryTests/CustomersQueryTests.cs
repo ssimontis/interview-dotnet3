@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using FakeItEasy;
 using FluentAssertions;
-using FluentValidation;
-using FluentValidation.Results;
 using GroceryStoreAPI.Dal;
 using GroceryStoreAPI.Models;
 using GroceryStoreAPI.Queries;
-using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace GroceryStoreAPI.Tests.QueryTests
