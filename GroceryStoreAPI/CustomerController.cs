@@ -4,7 +4,7 @@ namespace GroceryStoreAPI
 {
     [ApiController]
     [Route("[controller]")]
-    public class Customer : ControllerBase
+    public class CustomerController : ControllerBase
     {
         
     }

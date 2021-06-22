@@ -61,6 +61,15 @@ namespace GroceryStoreAPI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A customer with the given ID does not exist..
+        /// </summary>
+        internal static string CustomerNotFound {
+            get {
+                return ResourceManager.GetString("CustomerNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The specified ID value is invalid..
         /// </summary>
         internal static string IdNotValid {
@@ -93,6 +102,15 @@ namespace GroceryStoreAPI {
         internal static string NameRequired {
             get {
                 return ResourceManager.GetString("NameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required request object is missing..
+        /// </summary>
+        internal static string ObjectRequired {
+            get {
+                return ResourceManager.GetString("ObjectRequired", resourceCulture);
             }
         }
     }

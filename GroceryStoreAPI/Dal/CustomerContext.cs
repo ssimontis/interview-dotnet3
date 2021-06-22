@@ -8,8 +8,15 @@ namespace GroceryStoreAPI.Dal
         public CustomerContext(DbContextOptions<CustomerContext> options) : base(options)
         {
         }
+
+        // Constructor for allowing fakes when testing
+        public CustomerContext()
+        {
+            
+        }
         
-        public DbSet<Customer> Customers { get; set; }
+        // Virtual is required for fakes to function correctly
+        public virtual DbSet<Customer> Customers { get; set; }
         
     }
 }
