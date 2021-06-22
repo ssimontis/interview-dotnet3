@@ -23,4 +23,8 @@
       <DependentUpon>ErrorMessages.resx</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands" />
+    <Folder Include="Queries" />
+  </ItemGroup>
 </Project>
