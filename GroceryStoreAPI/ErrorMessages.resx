@@ -36,4 +36,7 @@
     <data name="CustomerNotFound" xml:space="preserve">
         <value>A customer with the given ID does not exist.</value>
     </data>
+    <data name="ExecutionFailed" xml:space="preserve">
+        <value>The current request failed; please try again later.</value>
+    </data>
 </root>

@@ -70,6 +70,15 @@ namespace GroceryStoreAPI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The current request failed; please try again later..
+        /// </summary>
+        internal static string ExecutionFailed {
+            get {
+                return ResourceManager.GetString("ExecutionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The specified ID value is invalid..
         /// </summary>
         internal static string IdNotValid {

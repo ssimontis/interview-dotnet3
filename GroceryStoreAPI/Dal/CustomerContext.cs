@@ -1,4 +1,6 @@
-﻿using GroceryStoreAPI.Models;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using GroceryStoreAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GroceryStoreAPI.Dal
@@ -17,6 +19,8 @@ namespace GroceryStoreAPI.Dal
         
         // Virtual is required for fakes to function correctly
         public virtual DbSet<Customer> Customers { get; set; }
-        
+
+        public virtual async Task<IList<Customer>> AllCustomers() => await Customers.ToListAsync();
+
     }
 }

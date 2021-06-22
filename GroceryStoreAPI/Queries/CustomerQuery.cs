@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -35,11 +36,18 @@ namespace GroceryStoreAPI.Queries
                     HttpStatusCode.BadRequest);
             }
 
-            var customer = await _context.Customers.FindAsync();
+            try
+            {
+                var customer = await _context.Customers.FindAsync();
 
-            return customer == null
-                ? new Result<Customer>(ErrorMessages.CustomerNotFound, HttpStatusCode.NotFound)
-                : new Result<Customer>(customer);
+                return customer == null
+                    ? new Result<Customer>(ErrorMessages.CustomerNotFound, HttpStatusCode.NotFound)
+                    : new Result<Customer>(customer);
+            }
+            catch (Exception e)
+            {
+                return new Result<Customer>(ErrorMessages.ExecutionFailed, HttpStatusCode.ServiceUnavailable);
+            }
         }
     }
 }
