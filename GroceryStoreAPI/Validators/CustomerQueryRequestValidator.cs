@@ -8,10 +8,7 @@ namespace GroceryStoreAPI.Validators
         public CustomerQueryRequestValidator()
         {
             RuleFor(x => x.Id)
-                .NotEmpty()
-                .WithMessage(ErrorMessages.IdRequired)
-                .GreaterThanOrEqualTo(1)
-                .WithMessage(ErrorMessages.IdNotValid);
+                .SetValidator(new IdValidator<CustomerQueryRequest>());
         }
     }
 }

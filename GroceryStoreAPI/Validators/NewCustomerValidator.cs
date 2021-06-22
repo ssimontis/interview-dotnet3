@@ -11,10 +11,7 @@ namespace GroceryStoreAPI.Validators
         public NewCustomerValidator()
         {
             RuleFor(x => x.Name)
-                .NotEmpty()
-                .WithMessage(ErrorMessages.NameRequired)
-                .MaximumLength(255)
-                .WithMessage(ErrorMessages.NameLengthExceeded);
+                .SetValidator(new NameValidator<NewCustomerRequest>());
         }
     }
 }
