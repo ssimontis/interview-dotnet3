@@ -38,7 +38,7 @@ namespace GroceryStoreAPI.Commands
                     return new Result<Customer>(ErrorMessages.CustomerNotFound, HttpStatusCode.NotFound);
                 }
 
-                customer.Name = request.Name;
+                customer.name = request.Name;
 
                 await _context.SaveChangesAsync();
 

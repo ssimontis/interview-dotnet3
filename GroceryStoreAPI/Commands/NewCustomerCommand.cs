@@ -33,7 +33,7 @@ namespace GroceryStoreAPI.Commands
             {
                 var customer = new Customer
                 {
-                    Name = request.Name
+                    name = request.Name
                 };
 
                 var persisted = _context.Customers.Add(customer);

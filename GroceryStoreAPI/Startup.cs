@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using GroceryStoreAPI.Commands;
-using GroceryStoreAPI.Configuration;
 using GroceryStoreAPI.Dal;
 using GroceryStoreAPI.Models;
 using GroceryStoreAPI.Queries;
@@ -26,10 +25,10 @@ namespace GroceryStoreAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<DataStore>(Configuration.GetSection(DataStore.ConfigSection));
-            
             services.AddDbContext<CustomerContext>(cfg =>
                 cfg.UseInMemoryDatabase("Customers"));
+
+            services.AddScoped<IDatabaseLoader, JsonDatabaseLoader>();
 
             services.AddScoped<IValidator<CustomerQueryRequest>, CustomerRequestValidator>();
             services.AddScoped<IValidator<NewCustomerRequest>, NewCustomerValidator>();
@@ -59,6 +58,11 @@ namespace GroceryStoreAPI
                     cfg.RoutePrefix = string.Empty;
                 });
 
+                var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+
+                using var scope = scopeFactory.CreateScope();
+                var initializer = scope.ServiceProvider.GetService<IDatabaseLoader>();
+                initializer.LoadData();
             }
             
             app.UseRouting();
