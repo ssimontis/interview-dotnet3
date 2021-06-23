@@ -52,7 +52,7 @@ namespace GroceryStoreAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(cfg =>
                 {
-                    cfg.SwaggerEndpoint("/swagger/v1/swagger/json", "Grocery Store API");
+                    cfg.SwaggerEndpoint("/swagger/v1/swagger.json", "Grocery Store API");
                     cfg.RoutePrefix = string.Empty;
                 });
 

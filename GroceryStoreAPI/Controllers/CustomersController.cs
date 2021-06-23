@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GroceryStoreAPI.Commands;
 using GroceryStoreAPI.Dto;
 using GroceryStoreAPI.Models;
@@ -28,6 +27,11 @@ namespace GroceryStoreAPI.Controllers
             _customersQuery = customersQuery;
         }
 
+        /// <summary>
+        /// Retrieves a single customer by their ID.
+        /// </summary>
+        /// <param name="id">The customer's ID (a 64-bit integer > 0)</param>
+        /// <returns>The customer which the corresponding ID, or a 404 status.</returns>
         [HttpGet("{id:long}")]
         public async Task<ActionResult<Customer>> GetCustomer(long id)
         {
@@ -43,6 +47,10 @@ namespace GroceryStoreAPI.Controllers
                 : StatusCode((int) result.StatusCode);
         }
 
+        /// <summary>
+        /// Returns a list of all customers in the database.
+        /// </summary>
+        /// <returns>A list of all customers (empty if none exist).</returns>
         [HttpGet]
         public async Task<ActionResult<GetCustomersDto>> GetCustomers()
         {
@@ -53,6 +61,12 @@ namespace GroceryStoreAPI.Controllers
                 : StatusCode((int) result.StatusCode);
         }
 
+        /// <summary>
+        /// Updates an existing customer, as specified by their ID.
+        /// </summary>
+        /// <param name="id">The customer's ID (a 64-bit integer > 0)</param>
+        /// <param name="dto">An object containing the name that must be updated.</param>
+        /// <returns>The updated customer record.</returns>
         [HttpPut("{id:long}")]
         public async Task<ActionResult<Customer>> UpdateCustomer(long id, UpdateCustomerDto dto)
         {
@@ -69,6 +83,11 @@ namespace GroceryStoreAPI.Controllers
                 : StatusCode((int) result.StatusCode);
         }
 
+        /// <summary>
+        /// Adds a new customer to the database.
+        /// </summary>
+        /// <param name="request">An object containing the name of the customer.</param>
+        /// <returns>The customer object with an assigned ID.</returns>
         [HttpPost]
         public async Task<ActionResult<Customer>> AddCustomer(NewCustomerRequest request)
         {
