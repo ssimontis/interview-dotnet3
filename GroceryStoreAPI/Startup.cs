@@ -1,4 +1,7 @@
-﻿using FluentValidation;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using FluentValidation;
 using GroceryStoreAPI.Commands;
 using GroceryStoreAPI.Dal;
 using GroceryStoreAPI.Models;
@@ -40,9 +43,15 @@ namespace GroceryStoreAPI
             services.AddScoped<UpdateCustomerCommand>();
             
             services.AddControllers();
-            
+
             services.AddSwaggerGen(cfg =>
-                cfg.SwaggerDoc("v1", new OpenApiInfo {Title = "Grocery Store API", Version = "v1"}));
+            {
+                cfg.SwaggerDoc("v1", new OpenApiInfo {Title = "Grocery Store API", Version = "v1"});
+                
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                cfg.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

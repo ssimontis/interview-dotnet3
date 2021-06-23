@@ -73,7 +73,7 @@ namespace GroceryStoreAPI.Controllers
             var request = new UpdateCustomerRequest
             {
                 Id = id,
-                Name = dto?.Message
+                Name = dto?.Name
             };
 
             var result = await _updateCustomerCommand.Execute(request);

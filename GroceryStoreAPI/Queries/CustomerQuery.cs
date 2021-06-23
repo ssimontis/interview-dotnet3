@@ -38,7 +38,7 @@ namespace GroceryStoreAPI.Queries
 
             try
             {
-                var customer = await _context.Customers.FindAsync();
+                var customer = await _context.Customers.FindAsync(request.Id);
 
                 return customer == null
                     ? new Result<Customer>(ErrorMessages.CustomerNotFound, HttpStatusCode.NotFound)
