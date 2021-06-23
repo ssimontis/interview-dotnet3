@@ -1,4 +1,9 @@
-﻿using GroceryStoreAPI.Dal;
+﻿using FluentValidation;
+using GroceryStoreAPI.Commands;
+using GroceryStoreAPI.Dal;
+using GroceryStoreAPI.Models;
+using GroceryStoreAPI.Queries;
+using GroceryStoreAPI.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +27,15 @@ namespace GroceryStoreAPI
         {
             services.AddDbContext<CustomerContext>(cfg =>
                 cfg.UseInMemoryDatabase("Customers"));
+
+            services.AddScoped<IValidator<CustomerQueryRequest>, CustomerRequestValidator>();
+            services.AddScoped<IValidator<NewCustomerRequest>, NewCustomerValidator>();
+            services.AddScoped<IValidator<UpdateCustomerRequest>, UpdateCustomerValidator>();
+
+            services.AddScoped<CustomerQuery>();
+            services.AddScoped<CustomersQuery>();
+            services.AddScoped<NewCustomerCommand>();
+            services.AddScoped<UpdateCustomerCommand>();
             
             services.AddControllers();
             
@@ -37,9 +51,13 @@ namespace GroceryStoreAPI
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(cfg =>
-                    cfg.SwaggerEndpoint("/swagger/v1/swagger/json", "Grocery Store API"));
-            }
+                {
+                    cfg.SwaggerEndpoint("/swagger/v1/swagger/json", "Grocery Store API");
+                    cfg.RoutePrefix = string.Empty;
+                });
 
+            }
+            
             app.UseRouting();
 
             app.UseAuthorization();
