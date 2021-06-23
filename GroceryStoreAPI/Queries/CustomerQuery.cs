@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using GroceryStoreAPI.Dal;
 using GroceryStoreAPI.Models;
-using GroceryStoreAPI.Validators;
+using Serilog;
 
 namespace GroceryStoreAPI.Queries
 {
@@ -46,6 +46,7 @@ namespace GroceryStoreAPI.Queries
             }
             catch (Exception e)
             {
+                Log.Logger.Error(e, "Failed to fetch customer.");
                 return new Result<Customer>(ErrorMessages.ExecutionFailed, HttpStatusCode.ServiceUnavailable);
             }
         }

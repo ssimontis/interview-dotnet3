@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using GroceryStoreAPI.Dal;
 using GroceryStoreAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace GroceryStoreAPI.Queries
 {
@@ -26,6 +27,7 @@ namespace GroceryStoreAPI.Queries
             }
             catch (Exception e)
             {
+                Log.Logger.Error(e, "Failed to fetch customers.");
                 return new Result<IList<Customer>>(ErrorMessages.ExecutionFailed, HttpStatusCode.ServiceUnavailable);
             }
         }

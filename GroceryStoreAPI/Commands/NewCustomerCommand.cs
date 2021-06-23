@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using GroceryStoreAPI.Dal;
 using GroceryStoreAPI.Models;
+using Serilog;
 
 namespace GroceryStoreAPI.Commands
 {
@@ -44,6 +45,7 @@ namespace GroceryStoreAPI.Commands
             }
             catch (Exception e)
             {
+                Log.Logger.Error(e, "Failed to create new customer.");
                 return new Result<Customer>(ErrorMessages.ExecutionFailed, HttpStatusCode.ServiceUnavailable);
             }
         }
